@@ -1,0 +1,28 @@
+{
+    "builders": [{
+      "type": "amazon-ebs",
+      "region": "eu-west-2",
+      "subnet_id": "subnet-0a2dc7a98e6e8d202",
+      "vpc_id": "vpc-0c61be1ff0b7a33fc",
+      "associate_public_ip_address": true,
+      "source_ami_filter": {
+        "filters": {
+          "virtualization-type": "hvm",
+          "name": "amzn2-ami-hvm-2.0.20191116.0-x86_64-gp2",
+          "root-device-type": "ebs"
+        },
+      "owners": ["137112412989"],
+      "most_recent": true
+      },
+      "instance_type": "t2.micro",
+      "ssh_username": "ec2-user",
+      "ami_name": "base {{timestamp}}"
+    }],
+    "provisioners":[
+        {
+            "type": "shell",
+            "scripts": ["scripts/deploy.sh"]
+          }
+      ]
+  }
+
